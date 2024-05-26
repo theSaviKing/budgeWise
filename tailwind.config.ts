@@ -18,11 +18,19 @@ const config: Config = {
                 dark: {
                     colors: {
                         background: colors.slate[950],
+                        primary: {
+                            ...colors.emerald,
+                            DEFAULT: colors.emerald[300],
+                        },
                     },
                 },
                 light: {
                     colors: {
                         background: colors.slate[200],
+                        primary: {
+                            ...colors.emerald,
+                            DEFAULT: colors.emerald[400],
+                        },
                     },
                 },
             },
