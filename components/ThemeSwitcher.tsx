@@ -26,9 +26,11 @@ export default function ThemeSwitcher() {
     return (
         <Select
             onChange={(e) => setTheme(e.target.value || theme!)}
-            className="w-28"
+            className="w-44"
             size="sm"
-            variant="flat"
+            variant="faded"
+            label="Device theme"
+            labelPlacement="outside-left"
             selectedKeys={[theme!]}
             startContent={
                 {

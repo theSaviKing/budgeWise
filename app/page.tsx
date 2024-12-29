@@ -1,31 +1,19 @@
 import Image from "next/image";
-import PhoneMockup from "@/assets/phone mockup.png";
+import PhoneMockup from "@/assets/img/phone mockup.png";
 import { Button } from "@nextui-org/button";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import { LetterLogo } from "@/components/branding";
-import {
-    SignInButton,
-    SignUpButton,
-    SignedIn,
-    SignedOut,
-    UserButton,
-} from "@clerk/nextjs";
+import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { Link } from "@nextui-org/react";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+import UserButton from "@/components/UserButton";
 
 export const metadata: Metadata = {
     title: "A lightweight, functional budgeting app",
 };
 
 export default async function Home() {
-    const user = await currentUser();
-
-    if (user) {
-        redirect("/dashboard");
-    }
-
     return (
         <>
             <nav className="flex items-center p-6">
@@ -34,20 +22,21 @@ export default async function Home() {
                 </div>
                 <div className="flex w-1/2 items-center justify-end gap-4">
                     <SignedIn>
-                        <UserButton></UserButton>
+                        <UserButton placement="bottom-end" />
+                        <Link
+                            color="primary"
+                            underline="hover"
+                            href="/dashboard"
+                        >
+                            Dashboard
+                        </Link>
                     </SignedIn>
                     <SignedOut>
                         <SignUpButton>
-                            <Button color="primary" size="sm">
-                                Sign Up
-                            </Button>
+                            <Button color="primary">Sign Up</Button>
                         </SignUpButton>
                         <SignInButton mode="modal">
-                            <Link
-                                underline="hover"
-                                className="cursor-pointer"
-                                size="sm"
-                            >
+                            <Link underline="hover" className="cursor-pointer">
                                 Sign In
                             </Link>
                         </SignInButton>
@@ -55,7 +44,7 @@ export default async function Home() {
                 </div>
             </nav>
             <main className="size-full">
-                <section className="grid h-[66dvh] grid-cols-3 gap-4 border-b border-slate-500 py-8">
+                <section className="grid h-[66dvh] grid-cols-3 gap-4 py-8">
                     <div className="col-span-2 flex flex-col justify-center gap-4 px-8">
                         <p className="text-4xl font-bold">
                             Take control of your finances with{" "}
